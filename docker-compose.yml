@@ -31,7 +31,7 @@ services:
             target: build
         container_name: frontend_builder
         volumes:
-            - backend:/app/dist
+            - backend:/app/public
         depends_on:
             - backend
 
