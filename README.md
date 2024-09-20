@@ -10,10 +10,11 @@ Docker Compose du projet pour le cours de RenforcementJS.
 
 ### Images :
 
--   Back
--   Front
--   Mongo
+-   Back ✅
+-   Front ✅
+-   Mongo ✅
 
-[Back]
-(https://github.com/Hydevs-Corp/TuitBack)
-[Docker](https://github.com/Hydevs-Corp/TuitCompose.git)
+### Autres parties du projet :
+
+-   [Back](https://github.com/Hydevs-Corp/TuitBack)
+-   [Front](https://github.com/Hydevs-Corp/TuitFront)
