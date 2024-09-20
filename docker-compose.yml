@@ -1,0 +1,35 @@
+services:
+    mongodb:
+        image: mongo
+        container_name: mongodb
+        volumes:
+            - mongodb_data:/data/db
+
+    backend:
+        build:
+            context: ${BACKEND_PATH}
+            target: production
+        container_name: backend
+        restart: always
+        environment:
+            AUTH_SECRET: ${AUTH_SECRET}
+            AUTH_GITHUB_ID: ${AUTH_GITHUB_ID}
+            AUTH_GITHUB_SECRET: ${AUTH_GITHUB_SECRET}
+            MONGODB_URI: ${MONGODB_URI}
+            MAGIC_USER_LOGIN: ${MAGIC_USER_LOGIN}
+            MAGIC_USER_PASSWORD: ${MAGIC_USER_PASSWORD}
+        ports:
+            - "80:80"
+        depends_on:
+            - mongodb
+
+    frontend:
+        build:
+            context: ${FRONTEND_PATH}
+            target: build
+        container_name: frontend_builder
+        depends_on:
+            - backend
+
+volumes:
+    mongodb_data:
