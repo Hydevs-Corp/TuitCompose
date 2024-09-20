@@ -20,21 +20,26 @@ services:
             MAGIC_USER_PASSWORD: ${MAGIC_USER_PASSWORD}
         ports:
             - "${PORT}:80"
+        volumes:
+            - backend_data:/app
+            - frontend_dist:/app/public
         depends_on:
             - mongodb
-        volumes:
-            - backend:/app
 
     frontend:
         build:
             context: ${FRONTEND_PATH}
             target: build
+        environment:
+            VITE_OUTDIR: dist
         container_name: frontend_builder
         volumes:
-            - backend:/app/public
+            - frontend_dist:/app/public
+        command: /bin/sh -c "npm run build && cp -R dist/* /app/public/" # Copie le contenu de dist dans /app/public après le build
         depends_on:
             - backend
 
 volumes:
     mongodb_data:
-    backend:
+    backend_data:
+    frontend_dist:
