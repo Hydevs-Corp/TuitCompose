@@ -19,7 +19,7 @@ services:
             MAGIC_USER_LOGIN: ${MAGIC_USER_LOGIN}
             MAGIC_USER_PASSWORD: ${MAGIC_USER_PASSWORD}
         ports:
-            - "80:80"
+            - "${PORT}:80"
         depends_on:
             - mongodb
 
